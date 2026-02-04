@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - IMTIS UHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0e40a0; --primary-dark: #0a2e7a; --text-main: #1e293b; --text-light: #64748b; --bg-body: #f8fafc; --white: #ffffff; --radius-card: 40px; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; font-size: 1.1rem; }
+        * { box-sizing: border-box; }
+        
+        header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1800px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(25px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); padding: 0.8rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.3s ease; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); }
+        nav { display: flex; gap: 2.5rem; align-items: center; } nav a { font-weight: 600; font-size: 1rem; color: var(--text-main); text-decoration: none; } nav a:hover { color: var(--primary); }
+        .lang-btn { background: var(--text-main); color: white; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+
+        .hero { background: linear-gradient(to bottom, rgba(14, 64, 160, 0.9), rgba(14, 64, 160, 0.6)), url('fonde.jpg'); background-size: cover; background-position: center; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 2rem 6rem; }
+        .hero h1 { font-family: 'Poppins', sans-serif; font-size: 4rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; opacity: 0.9; }
+
+        main { width: 95%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
+        .main-card { background: var(--white); border-radius: var(--radius-card); box-shadow: 0 40px 80px -20px rgba(14, 64, 160, 0.2); padding: 4rem; margin-top: -150px; margin-bottom: 6rem; border: 1px solid rgba(255, 255, 255, 0.5); }
+
+        .stats-banner { display: flex; justify-content: space-around; margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid #e2e8f0; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; font-family: 'Poppins', sans-serif; }
+        .stat-label { color: var(--text-light); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        .advanced-search { background: #f8fafc; padding: 2rem; border-radius: 24px; margin-bottom: 4rem; border: 1px solid #e2e8f0; }
+        .search-row-1 { display: grid; grid-template-columns: 3fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+        .search-row-2 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; }
+        input, select { padding: 1rem 1.5rem; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 1rem; width: 100%; background: white; outline: none; }
+        .search-btn { background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+        .year-separator { font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin: 3rem 0 1.5rem; display: flex; align-items: center; gap: 1rem; }
+        .year-separator::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+        .pub-row { display: flex; gap: 2rem; align-items: flex-start; padding: 2rem 0; border-bottom: 1px solid #f1f5f9; transition: 0.3s; }
+        .pub-row:hover { transform: translateX(10px); }
+        .pub-type { min-width: 100px; text-align: center; padding: 0.5rem; border-radius: 12px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .type-journal { background: #dbeafe; color: var(--primary); }
+        .type-conf { background: #f3e8ff; color: #7e22ce; }
+        .type-thesis { background: #dcfce7; color: #15803d; }
+        .pub-content { flex: 1; }
+        .pub-title { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); display: block; }
+        .pub-venue { font-style: italic; color: var(--primary); font-weight: 500; }
+        .pub-actions { display: flex; gap: 10px; flex-direction: column; align-items: flex-end; }
+        .action-link { font-size: 0.9rem; font-weight: 600; text-decoration: none; color: var(--text-light); display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; border: 1px solid #e2e8f0; transition: 0.2s; white-space: nowrap; }
+        .action-link:hover { border-color: var(--primary); color: var(--primary); background: white; }
+
+        footer { background: #0f172a; color: #94a3b8; padding: 5rem 2rem 2rem; }
+        .footer-content { width: 95%; max-width: 1800px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; border-bottom: 1px solid #334155; padding-bottom: 4rem; }
+        .footer-links a { display: block; margin-bottom: 0.8rem; color: #94a3b8; text-decoration: none; }
+        .copyright { text-align: center; padding-top: 2rem; font-size: 0.9rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 1rem; padding: 1rem; width: 92%; top: 10px; border-radius: 20px; }
+            nav { flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .main-card { padding: 1.5rem; margin-top: -50px; border-radius: 24px; }
+            
+            .stats-banner { flex-wrap: wrap; gap: 2rem; }
+            .stat-item { width: 45%; }
+            
+            .search-row-1, .search-row-2 { grid-template-columns: 1fr; }
+            
+            .pub-row { flex-direction: column; gap: 1rem; }
+            .pub-type { align-self: flex-start; }
+            .pub-actions { flex-direction: row; width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+            
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-shapes"></i> &nbsp; UHA / IMTIS</div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="equipe.html">Équipe</a>
+            <a href="#" style="color:var(--primary);">Publications</a>
+            <a href="projets.html">Projets</a>
+            <a href="seminaires.html">Séminaires</a>
+        </nav>
+        <div class="lang-btn">FR | EN</div>
+    </header>
+
+    <div class="hero">
+        <h1>Publications Scientifiques</h1>
+        <p>Production scientifique de l'équipe : Articles de journaux, conférences internationales et thèses.</p>
+    </div>
+
+    <main>
+        <div class="main-card">
+            
+            <div class="stats-banner">
+                <div class="stat-item"><span class="stat-number">450+</span><span class="stat-label">Publications</span></div>
+                <div class="stat-item"><span class="stat-number">12</span><span class="stat-label">Prix Best Paper</span></div>
+                <div class="stat-item"><span class="stat-number">2026</span><span class="stat-label">Dernière Mise à jour</span></div>
+            </div>
+
+            <div class="advanced-search">
+                <div class="search-row-1">
+                    <input type="text" placeholder="Rechercher par titre, DOI, mots-clés...">
+                    <button class="search-btn"><i class="fas fa-search"></i> Filtrer</button>
+                </div>
+                <div class="search-row-2">
+                    <select><option>Année (Toutes)</option><option>2026</option></select>
+                    <select><option>Type (Tous)</option></select>
+                    <select><option>Auteur (Tous)</option></select>
+                    <select><option>Projet (Tous)</option></select>
+                </div>
+            </div>
+
+            <div class="year-separator">2026</div>
+            <div class="pub-row">
+                <div class="pub-type type-journal">Journal</div>
+                <div class="pub-content">
+                    <span class="pub-title">Advanced Deep Learning Architectures for 3D Medical Image Segmentation</span>
+                    <div class="pub-authors"><strong>S. Zariouh</strong>, P. Dupont, L. Bernard</div>
+                    <div class="pub-venue">IEEE Transactions on Medical Imaging (TMI)</div>
+                </div>
+                <div class="pub-actions">
+                    <a href="#" class="action-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="#" class="action-link"><i class="fas fa-quote-right"></i> BibTeX</a>
+                </div>
+            </div>
+
+            <div class="year-separator">2025</div>
+            <div class="pub-row">
+                <div class="pub-type type-conf">Conférence</div>
+                <div class="pub-content">
+                    <span class="pub-title">Real-time Anomaly Detection in Biosignals using Transformers</span>
+                    <div class="pub-authors">A. Moukadem, <strong>S. Zariouh</strong></div>
+                    <div class="pub-venue">ICASSP 2025</div>
+                </div>
+                <div class="pub-actions">
+                    <a href="#" class="action-link"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="#" class="action-link"><i class="fas fa-quote-right"></i> BibTeX</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><h4>IMTIS / IRIMAS</h4><p>UHA - Campus Fonderie</p></div>
+            <div class="footer-links"><h5>Liens Rapides</h5><a href="#">L'Équipe</a><a href="#">Publications</a></div>
+            <div class="footer-links"><h5>Partenaires</h5><a href="#">UHA</a><a href="#">CNRS</a></div>
+        </div>
+        <div class="copyright">&copy; 2026 Équipe IMTIS</div>
+    </footer>
+
+</body>
+</html>

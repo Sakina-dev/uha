@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipe IMTIS - UHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0e40a0; --primary-dark: #0a2e7a; --text-main: #1e293b; --text-light: #64748b; --bg-body: #f8fafc; --white: #ffffff; --radius-card: 40px; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; font-size: 1.1rem; }
+        * { box-sizing: border-box; }
+        
+        header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1800px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(25px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); padding: 0.8rem 3rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.3s ease; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        nav { display: flex; gap: 2.5rem; align-items: center; }
+        nav a { font-weight: 600; font-size: 1rem; color: var(--text-main); text-decoration: none; transition: 0.2s; }
+        nav a:hover { color: var(--primary); }
+        .lang-btn { background: var(--text-main); color: white; padding: 0.6rem 1.4rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+
+        .hero { background: linear-gradient(to bottom, rgba(14, 64, 160, 0.9) 0%, rgba(14, 64, 160, 0.6) 60%, var(--bg-body) 100%), url('fonde.jpg'); background-size: cover; background-position: center; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 2rem 6rem; }
+        .hero h1 { font-family: 'Poppins', sans-serif; font-size: 4rem; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; opacity: 0.9; }
+
+        main { width: 95%; max-width: 1800px; margin: 0 auto; position: relative; z-index: 10; }
+        .main-card { background: var(--white); border-radius: var(--radius-card); box-shadow: 0 40px 80px -20px rgba(14, 64, 160, 0.2); padding: 4rem; margin-top: -150px; margin-bottom: 6rem; border: 1px solid rgba(255, 255, 255, 0.5); overflow: hidden; }
+
+        .team-filter { display: flex; justify-content: center; gap: 1rem; margin-bottom: 4rem; flex-wrap: wrap; }
+        .filter-btn { background: #f1f5f9; color: var(--text-light); border: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; }
+
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 2rem; color: var(--text-main); margin-bottom: 2rem; border-left: 5px solid var(--primary); padding-left: 15px; margin-top: 3rem; }
+        
+        .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+        .member-card { background: #f8fafc; border-radius: 24px; padding: 3rem 2rem 2rem; text-align: center; transition: 0.3s; border: 1px solid transparent; position: relative; display: flex; flex-direction: column; align-items: center; }
+        .member-card:hover { background: white; transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); border-color: #e2e8f0; }
+
+        .member-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); background: #cbd5e1; position: relative; z-index: 1; }
+        
+        .role-badge { background: #dbeafe; color: var(--primary); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; margin-bottom: 1.5rem; display: inline-block; }
+        .role-prof { background: #dbeafe; color: var(--primary); }
+        .role-mcf { background: #e0f2fe; color: #0284c7; }
+        .role-phd { background: #dcfce7; color: #166534; }
+        .role-stagiaire { background: #fef9c3; color: #854d0e; }
+
+        .member-card h3 { margin: 0 0 0.5rem; font-family: 'Poppins', sans-serif; font-size: 1.4rem; color: var(--text-main); }
+        .member-job { color: var(--text-light); font-size: 1rem; margin-bottom: 1.2rem; font-style: italic; }
+        .research-tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .res-tag { font-size: 0.8rem; background: white; border: 1px solid #e2e8f0; padding: 4px 10px; border-radius: 6px; color: var(--text-light); font-weight: 500; }
+        .social-links { display: flex; justify-content: center; gap: 15px; margin-top: auto; }
+        .social-links a { color: #94a3b8; font-size: 1.2rem; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: white; border: 1px solid #f1f5f9; text-decoration: none; }
+        
+        footer { background: #0f172a; color: #94a3b8; padding: 5rem 2rem 2rem; }
+        .footer-content { width: 95%; max-width: 1800px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; border-bottom: 1px solid #334155; padding-bottom: 4rem; }
+        .footer-links a { display: block; margin-bottom: 0.8rem; color: #94a3b8; text-decoration: none; }
+        .copyright { text-align: center; padding-top: 2rem; font-size: 0.9rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 1rem; width: 92%; padding: 1rem; top: 10px; border-radius: 20px; }
+            nav { flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .main-card { padding: 1.5rem; margin-top: -50px; border-radius: 24px; }
+            .members-grid { grid-template-columns: 1fr; } /* 1 seule colonne pour les membres sur mobile */
+            .filter-btn { width: 100%; margin-bottom: 0.5rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-shapes"></i> &nbsp; UHA / IRIMAS / IMTIS</div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="#" style="color:var(--primary);">Équipe</a>
+            <a href="publications.html">Publications</a>
+            <a href="projets.html">Projets</a>
+            <a href="seminaires.html">Séminaires</a>
+        </nav>
+        <div class="lang-btn">FR | EN</div>
+    </header>
+
+    <div class="hero">
+        <h1>Notre Équipe</h1>
+        <p>Une synergie de chercheurs, doctorants et ingénieurs travaillant ensemble pour repousser les limites de l'imagerie et de la Data Science.</p>
+    </div>
+
+    <main>
+        <div class="main-card">
+            
+            <div class="team-filter">
+                <button class="filter-btn active">Tous les membres</button>
+                <button class="filter-btn">Enseignants-Chercheurs</button>
+                <button class="filter-btn">Doctorants</button>
+                <button class="filter-btn">Stagiaires</button>
+            </div>
+
+            <h2 class="section-title">Enseignants-Chercheurs</h2>
+            <div class="members-grid">
+                <div class="member-card">
+                    <span class="role-badge role-prof">Professeur des Universités</span>
+                    <img src="https://ui-avatars.com/api/?name=Pierre+Dupont&background=0e40a0&color=fff&size=128" alt="Photo" class="member-img">
+                    <h3>Pr. Pierre Dupont</h3>
+                    <div class="member-job">Directeur de l'équipe IMTIS</div>
+                    <div class="research-tags"><span class="res-tag">IA</span><span class="res-tag">Imagerie</span></div>
+                    <div class="social-links"><a href="#"><i class="fas fa-envelope"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                </div>
+                <div class="member-card">
+                    <span class="role-badge role-mcf">Maître de Conférences</span>
+                    <img src="https://ui-avatars.com/api/?name=Ali+Moukadem&background=0284c7&color=fff&size=128" alt="Photo" class="member-img">
+                    <h3>Dr. Ali Moukadem</h3>
+<div class="member-job">Intelligence Artificielle & Traitement d’Image</div>
+<div class="research-tags">
+    <span class="res-tag">Computer Vision</span>
+    <span class="res-tag">Deep Learning</span>
+    <span class="res-tag">Image Processing</span>
+</div>
+                </div>
+                <div class="member-card">
+                    <span class="role-badge role-prof">Professeur Associé</span>
+                    <img src="https://ui-avatars.com/api/?name=Alain+Keller&background=64748b&color=fff&size=128" alt="Photo" class="member-img">
+                    <h3>Dr. Alain Keller</h3>
+                    <div class="member-job">Spécialiste Vision par Ordinateur</div>
+                    <div class="research-tags"><span class="res-tag">3D Vision</span></div>
+                    <div class="social-links"><a href="#"><i class="fas fa-envelope"></i></a></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Doctorants & Post-Docs</h2>
+            <div class="members-grid">
+                <div class="member-card">
+                    <span class="role-badge role-phd">Doctorant (2e année)</span>
+                    <img src="https://ui-avatars.com/api/?name=Lucas+Bernard&background=166534&color=fff&size=128" alt="Photo" class="member-img">
+                    <h3>Lucas Bernard</h3>
+                    <div class="member-job">Thèse : Segmentation Tumeurs</div>
+                    <div class="research-tags"><span class="res-tag">Deep Learning</span></div>
+                    <div class="social-links"><a href="#"><i class="fas fa-envelope"></i></a><a href="#"><i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="member-card">
+                    <span class="role-badge role-phd">Doctorante (1ère année)</span>
+                    <img src="https://ui-avatars.com/api/?name=Sarah+Lefebvre&background=16a34a&color=fff&size=128" alt="Photo" class="member-img">
+                    <h3>Sarah Lefebvre</h3>
+                    <div class="member-job">Thèse : Analyse prédictive</div>
+                    <div class="research-tags"><span class="res-tag">Statistics</span></div>
+                    <div class="social-links"><a href="#"><i class="fas fa-envelope"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Stagiaires & Alternants</h2>
+            <div class="members-grid">
+                 <div class="member-card" style="border: 2px dashed var(--primary); background: #fdfce8;">
+                    <span class="role-badge role-stagiaire">Stagiaire MMI</span>
+                    <div class="member-img" style="display:flex; align-items:center; justify-content:center; background:var(--primary); color:white; font-size:2rem; font-weight:bold;">SZ</div>
+                    <h3>Sakina Zariouh</h3>
+                    <div class="member-job">Développement Web Full Stack</div>
+                    <div class="research-tags"><span class="res-tag">React.js</span><span class="res-tag">WordPress</span></div>
+                    <div class="social-links"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>IMTIS / IRIMAS</h4>
+                <p>Équipe de recherche en Intelligence, Modélisation et Traitement de l'Information.</p>
+                <p style="margin-top:1rem;"><i class="fas fa-map-marker-alt"></i> <strong>UHA - Campus Fonderie</strong></p>
+            </div>
+            <div class="footer-links">
+                <h5>Liens Rapides</h5>
+                <a href="#">L'Équipe</a>
+                <a href="#">Publications</a>
+            </div>
+            <div class="footer-links">
+                <h5>Partenaires</h5>
+                <a href="#">Université de Haute-Alsace</a>
+                <a href="#">Institut IRIMAS</a>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 Équipe IMTIS</div>
+    </footer>
+
+</body>
+</html>
